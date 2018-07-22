@@ -4,6 +4,7 @@
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
         <option name="externalProjectPath" value="C:\scala_projects\dart_generator" />
+        <option name="useAutoImport" value="true" />
       </SbtProjectSettings>
     </option>
   </component>

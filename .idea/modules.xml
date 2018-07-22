@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dart_generator.iml" filepath="$PROJECT_DIR$/.idea/modules/dart_generator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dart_generator-build.iml" filepath="$PROJECT_DIR$/.idea/modules/dart_generator-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/root.iml" filepath="$PROJECT_DIR$/.idea/modules/root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/root-build.iml" filepath="$PROJECT_DIR$/.idea/modules/root-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/template.iml" filepath="$PROJECT_DIR$/.idea/modules/template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/template-build.iml" filepath="$PROJECT_DIR$/.idea/modules/template-build.iml" />
     </modules>
   </component>
 </project>

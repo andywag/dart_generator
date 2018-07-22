@@ -3,7 +3,7 @@ package org.simplifide.dart.web
 import org.simplifide.dart.binding.{DataModel, ModelService}
 import org.simplifide.dart.web.Routes.RoutePath
 import org.simplifide.template.FileModel
-import org.simplifide.template.FileModel.{GCopy, GDir, GList}
+import org.simplifide.template.FileModel.{GCopy, GDir, GList, GResource}
 import org.simplifide.template.model.dart.DartProject.Dependency
 import org.simplifide.template.model.dart.PubSpec
 
@@ -44,10 +44,13 @@ trait DartWebProject  {
       ),
       GDir("test"),
       GDir("web",List(
-        GCopy("favicon.png","C:\\dart_projects\\toh2\\web\\favicon.png"),
-        GCopy("index.html","C:\\dart_projects\\toh2\\web\\index.html"),
         main.createFile,
-        GCopy("styles.css","C:\\dart_projects\\toh2\\web\\styles.css")
+        //GCopy("favicon.png","C:\\dart_projects\\toh2\\web\\favicon.png"),
+        //GCopy("index.html","C:\\dart_projects\\toh2\\web\\index.html"),
+        //GCopy("styles.css","C:\\dart_projects\\toh2\\web\\styles.css"),
+        GResource("favicon.png","web/favicon.png"),
+        GResource("index.html" ,"web/index.html"),
+        GResource("styles.css" ,"web/styles.css")
       )),
       PubSpec(PubSpec.Description(this.name,""),dependencies,devDependencies).create
     )
