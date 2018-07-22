@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="template" external.linked.project.path="$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="template_combinator" external.linked.project.path="$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/target/scala-2.12/classes" />
-    <output-test url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/target/scala-2.12/test-classes" />
+    <output url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator/target/scala-2.12/classes" />
+    <output-test url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator/target/scala-2.12/test-classes" />
     <exclude-output />
-    <content url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template">
-      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/src/main/scala" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/src/test/scala" isTestSource="true" />
-      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/target/scala-2.12/src_managed/main" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/target/scala-2.12/src_managed/test" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/src/main/resources" type="java-resource" />
-      <excludeFolder url="file://$USER_HOME$/.sbt/1.0/staging/495aa7f86e37321ce035/template/target" />
+    <content url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator">
+      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator/target/scala-2.12/src_managed/main" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator/target/scala-2.12/src_managed/test" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$USER_HOME$/.sbt/1.0/staging/bfe7a8dd51ba640c9d68/template_combinator/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

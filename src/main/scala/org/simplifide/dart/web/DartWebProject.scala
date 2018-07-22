@@ -35,12 +35,12 @@ trait DartWebProject  {
       GDir("lib") (
         GDir("src",
           GDir("models",models.map(x=>x._2).map(x => x.createFile).toList) ::
+          GDir("services", services.map(x => x.file)) ::
           routeFile.createFile ::
           routePathsFile.createFile ::
           componentSources :::
           sources ),
-          GDir("services", services.map(x => x.file)),
-        GList(DartAppNew(routes).createFiles)
+        GList(DartApp(routes, services).createFiles)
       ),
       GDir("test"),
       GDir("web",List(

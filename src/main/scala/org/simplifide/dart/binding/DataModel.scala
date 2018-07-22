@@ -12,7 +12,7 @@ trait DataModel {
     new Container[Model] with DartParser {
       cla.imports.foreach(x => -->(x))
       -->(org.simplifide.template.model.Model.Line)
-      -->(cla)
+      -->(cla.create)
 
     }
   }

@@ -32,7 +32,7 @@ object Binding {
     def getType(typeJson:Json) = {
       val array = typeJson.asArray
       array.map(x => {
-        MType.TList(getJsonType(json))
+        MType.TList(getJsonType(x(0)))
       }).getOrElse(
         getJsonType(typeJson)
       )

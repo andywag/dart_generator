@@ -19,6 +19,9 @@ trait ModelService {
     new GFile(file.filename + "_service.dart",file.contents(DartGenerator.create))
   }
 
+  lazy val serviceName = s"${proto.name}Service"
+  lazy val importName  = s"services/${proto.name.toLowerCase}_service.dart"
+
 }
 
 object ModelService {
@@ -38,7 +41,7 @@ object ModelService {
     IMPORT_DART_CONVERT
     IMPORT_HTTP
     IMPORT_ANGULAR
-    imp(s"../models/${proto.name}.dart")
+    imp(s"../models/${proto.name.toLowerCase}.dart")
     -->(Model.Line)
     $_INJECTABLE
     -->(ModelServiceClass(service))
@@ -46,8 +49,8 @@ object ModelService {
 
   }
 
-  case class ModelServiceClass(service:ModelService) extends MClass(s"${service.proto.name}Service") {
-    -->($static ~ $final ~ "_headers" ~= Model.Dictionary(List(Model.ModelTuple("Content-Type","application/json"))))
+  case class ModelServiceClass(service:ModelService) extends MClass(s"${service.serviceName}") {
+    -->($static ~ $final ~ "_headers" ~= Model.Dictionary(List(Model.ModelTuple("Content-Type",Model.Quotes("application/json")))))
     //-->($static ~ $final ~ "_url" ~= Model.Quotes(service.baseAddress))
     -->(Model.Line)
     val client = -->($final ~ SType("Client") ~ "_http")
