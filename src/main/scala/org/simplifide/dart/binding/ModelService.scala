@@ -21,6 +21,7 @@ trait ModelService {
 
   lazy val serviceName = s"${proto.name}Service"
   lazy val importName  = s"services/${proto.name.toLowerCase}_service.dart"
+  lazy val mockName =   s"InMemory" + serviceName
 
 }
 
