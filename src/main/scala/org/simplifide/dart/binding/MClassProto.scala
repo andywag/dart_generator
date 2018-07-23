@@ -86,7 +86,7 @@ object MClassProto {
 
     def createField(v:MVar.Var, index:Model):Model = {
       v.typ match {
-        case SType(x) => s"${x}.fromJson($index)"
+        case SType(x) => MFunction.Call(s"${x}.fromJson",List(index)) //s"${x}.fromJson($index)"
         case _         => index
       }
     }

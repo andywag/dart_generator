@@ -25,13 +25,13 @@ trait ModelService {
 }
 
 object ModelService {
-  val extractData:String = "extractData"
+  val extractData:String = "_extractData"
 
   case class ModelServiceI(proto:MClassProto, functions:Map[String,ResponseFunction]) extends ModelService
   val client = $final ~ SType("Client") ~ "_http"
 
   def all(proto:MClassProto, address:String) = new ModelServiceI(proto,
-    Map(proto.name->ResponseFunction.All(proto.typ,address,proto.fromFunction,client.v)))
+    Map(proto.name->ResponseFunction.All(proto.typ,Model.Quotes(address),proto.fromFunction,client.v)))
 
   class ModelServiceFile(service:ModelService) extends DartFile {
     val proto = service.proto
@@ -65,7 +65,7 @@ object ModelService {
   }
 
   //   dynamic _extractData(Response resp) => json.decode(resp.body)['data'];
-  object ExtractData extends MFunction.MFunc(s"_extractData",TDynamic) {
+  object ExtractData extends MFunction.MFunc(extractData,TDynamic) {
     val resp = Var("resp",SType("Response"))
     val args = List(resp)
 

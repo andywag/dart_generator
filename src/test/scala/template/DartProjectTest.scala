@@ -33,26 +33,12 @@ object DartProjectExample extends DartWebProject {
     RoutePath("test3",TestComponent3),
   )
 
-  val models = ProjectModel.models
-  val services = List(ModelService.all(ProjectModel.models.get(ProjectModel.event.id).get.cla,"event"))
+  val models = DartProjectTestModel.ProjectModel.models
+  val services = List(ModelService.all(DartProjectTestModel.ProjectModel.models.get(DartProjectTestModel.ProjectModel.event.id).get.cla,"event"))
 
 }
 
-object ProjectModel {
-  import io.circe.generic.auto._
 
-  case class Person(x: String, d: Option[String], id: String = "Person")
-  case class Result(x: String, y: Person, id: String = "Result")
-  case class Event(name: String, event: String, results: List[Result], id: String = "Event")
-
-  val person = Person(B_STRING,Some(B_STRING))
-  val result = Result(B_STRING,person)
-  val event = Event(B_STRING,B_STRING,List(result))
-
-  //val models = Binding.createClassMap(event).map(x => (x,DataModelImpl(x))
-  val models = Binding.createClassMap(event).map(x => (x._1,DataModelImpl(x._2))).toMap
-
-}
 object TestComponent1 extends DartComponent {
   val name     = "test_a"
   override val style = Some(CssFile(DartWebStyles.MyInline))

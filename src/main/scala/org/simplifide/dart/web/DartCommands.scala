@@ -6,6 +6,11 @@ import org.simplifide.utils.ProcessUtil
 object DartCommands {
 
 
+  def activate(location:String) = {
+    val cmd = s"${Constants.dartLocation}\\pub.bat global activate webdev"
+    ProcessUtil.runCommand(cmd,Some(location))
+  }
+
   def build(location:String) = {
     val cmd = s"${Constants.dartLocation}\\pub.bat global run webdev build"
     ProcessUtil.runCommand(cmd,Some(location))
