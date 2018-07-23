@@ -1,8 +1,9 @@
 package template
 
-import org.simplifide.dart.binding.Binding
+import org.simplifide.dart.binding.{Binding, MockModel, ModelService}
 import org.simplifide.dart.binding.Binding.B_STRING
 import org.simplifide.dart.binding.DataModel.DataModelImpl
+import org.simplifide.dart.binding.ModelService.ModelServiceI
 
 object DartProjectTestModel {
 
@@ -19,6 +20,10 @@ object DartProjectTestModel {
 
     //val models = Binding.createClassMap(event).map(x => (x,DataModelImpl(x))
     val models = Binding.createClassMap(event).map(x => (x._1,DataModelImpl(x._2))).toMap
+
+    val modelEvent = models.get(DartProjectTestModel.ProjectModel.event.id).get.cla
+    val modelEventService = ModelService.all(modelEvent,"event")
+    val modelEventMock    = MockModel(modelEventService)
 
 
     val ex_people = List.tabulate(6)(x => Person(s"person$x",None))

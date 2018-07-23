@@ -4,7 +4,7 @@ import java.io.File
 import java.nio.file.Files
 
 import org.scalatest.FlatSpec
-import org.simplifide.dart.binding.{Binding, ModelService}
+import org.simplifide.dart.binding.{Binding, MockModel, ModelService}
 import org.simplifide.dart.binding.Binding._
 import org.simplifide.dart.binding.DataModel.DataModelImpl
 import org.simplifide.dart.binding.ModelService.ModelServiceI
@@ -34,7 +34,8 @@ object DartProjectExample extends DartWebProject {
   )
 
   val models = DartProjectTestModel.ProjectModel.models
-  val services = List(ModelService.all(DartProjectTestModel.ProjectModel.models.get(DartProjectTestModel.ProjectModel.event.id).get.cla,"event"))
+  val services = List(DartProjectTestModel.ProjectModel.modelEventService)
+  val mockItems = List(DartProjectTestModel.ProjectModel.modelEventMock)
 
 }
 
