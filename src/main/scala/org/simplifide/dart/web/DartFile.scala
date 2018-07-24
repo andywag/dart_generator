@@ -15,7 +15,7 @@ trait DartFile extends Container[Model] with DartParser {
 
 object DartFile {
   trait DartClassFile extends DartFile with MClassFile {
-    val filename = Utils.camelToUnderscores(className) + ".dart"
+    lazy val filename = Utils.camelToUnderscores(className) + ".dart"
 
   }
 }

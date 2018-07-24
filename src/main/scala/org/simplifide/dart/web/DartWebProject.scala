@@ -22,10 +22,13 @@ trait DartWebProject  {
   val services:List[ModelService]
   val mockItems:List[MockModel]
 
+
+
   private lazy val componentSources = components.flatMap(x => x.createFiles)
 
 
-  private lazy val main = DartMain(name)
+
+  protected lazy val main = DartMain(name)
   private lazy val routeFile     = Routes.RouteFile(routes)
   private lazy val routePathsFile = Routes.RoutePathsFile(routes)
 
@@ -60,6 +63,12 @@ trait DartWebProject  {
 }
 
 object DartWebProject {
+
+  val MODEL_PATH   = "src/models/"
+  val SERVICE_PATH = "src/services/"
+  val TEST_PATH = "src/test/"
+
+
   val defaultDependencies = List(
     Dependency("angular", "^5.0.0-alpha+15"),
     Dependency("angular_forms", "^2.0.0-alpha"),

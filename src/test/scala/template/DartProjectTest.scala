@@ -9,7 +9,7 @@ import org.simplifide.dart.binding.Binding._
 import org.simplifide.dart.binding.DataModel.DataModelImpl
 import org.simplifide.dart.binding.ModelService.ModelServiceI
 import org.simplifide.dart.web.Routes.RoutePath
-import org.simplifide.dart.web.{DartCommands, DartComponent, DartWebProject, DartWebStyles}
+import org.simplifide.dart.web._
 import org.simplifide.template.FileModel
 import org.simplifide.template.model.Model
 import org.simplifide.template.model.css.CssModel.CssFile
@@ -36,6 +36,9 @@ object DartProjectExample extends DartWebProject {
   val models = DartProjectTestModel.ProjectModel.models
   val services = List(DartProjectTestModel.ProjectModel.modelEventService)
   val mockItems = List(DartProjectTestModel.ProjectModel.modelEventMock)
+
+  override protected lazy val main = DartMain(name, Some(DartProjectTestModel.ProjectModel.modelEventMock))
+
 
 }
 

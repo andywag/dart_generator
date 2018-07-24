@@ -1,7 +1,9 @@
 package org.simplifide.dart.binding
 
 import org.simplifide.dart.binding
-import org.simplifide.dart.web.DartFile
+import org.simplifide.dart.binding.ModelService.ModelServiceFile
+import org.simplifide.dart.web.{DartFile, DartWebProject}
+import org.simplifide.dart.web.DartFile.DartClassFile
 import org.simplifide.template.FileModel.GFile
 import org.simplifide.template.model.MType.{$final, $static, SType, TDynamic}
 import org.simplifide.template.model.MVar.Var
@@ -13,6 +15,7 @@ trait ModelService {
   val proto:MClassProto
   val functions:Map[String,ResponseFunction]
 
+  lazy val classFile = new ModelServiceFile(this)
 
   def file = {
     val file = new binding.ModelService.ModelServiceFile(this)
@@ -20,12 +23,14 @@ trait ModelService {
   }
 
   lazy val serviceName = s"${proto.name}Service"
-  lazy val importName  = s"services/${proto.name.toLowerCase}_service.dart"
+  //lazy val importName  = s"services/${proto.name.toLowerCase}_service.dart"
   lazy val mockName =   s"InMemory" + serviceName
 
 }
 
 object ModelService {
+
+
   val extractData:String = "_extractData"
 
   case class ModelServiceI(proto:MClassProto, functions:Map[String,ResponseFunction]) extends ModelService
@@ -34,9 +39,13 @@ object ModelService {
   def all(proto:MClassProto, address:String) = new ModelServiceI(proto,
     Map(proto.name->ResponseFunction.All(proto.typ,Model.Quotes(address),proto.fromFunction,client.v)))
 
-  class ModelServiceFile(service:ModelService) extends DartFile {
+  class ModelServiceFile(service:ModelService) extends DartClassFile {
+    //override def className: String =  proto.name
+    override val classPath:String  = DartWebProject.SERVICE_PATH
+    override val mClass = ModelServiceClass(service)
+
     val proto = service.proto
-    override val filename: String = proto.name.toLowerCase
+    lazy override val filename: String = proto.name.toLowerCase
 
     IMPORT_DART_ASYNC
     IMPORT_DART_CONVERT
@@ -45,7 +54,7 @@ object ModelService {
     imp(s"../models/${proto.name.toLowerCase}.dart")
     -->(Model.Line)
     $_INJECTABLE
-    -->(ModelServiceClass(service))
+    -->(mClass)
 
 
   }

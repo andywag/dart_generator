@@ -28,7 +28,7 @@ case class DartApp(routes:List[RoutePath], services:List[ModelService]) extends 
   val providers:List[Model] = "ClassProvider(Routes)" :: services.map(x => Model.Str(s"ClassProvider(${x.serviceName})"))
 
   override val imports:List[Model] = Model.Import("src/routes.dart") ::
-    services.map(x => Model.Import(s"src/${x.importName}"))
+    services.map(x => x.classFile.importCommand)
 
   override def createClass:MClass = DartApp.DartAppClass("DartApp",routes)
 
