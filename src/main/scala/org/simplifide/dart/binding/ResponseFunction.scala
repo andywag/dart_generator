@@ -18,7 +18,7 @@ trait ResponseFunction extends MFunction {
 
 
   lazy val output: MType = MType.TFuture(out)
-  override val postFix: Option[Model] = Some("async")
+  override val postfix: Option[Model] = Some("async")
 
   val args: List[Var] = List()
 

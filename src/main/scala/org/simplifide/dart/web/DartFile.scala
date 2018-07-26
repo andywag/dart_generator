@@ -1,5 +1,6 @@
 package org.simplifide.dart.web
 
+import org.simplifide.dart.core.Importable
 import org.simplifide.template.Container
 import org.simplifide.template.FileModel.GFile
 import org.simplifide.template.model.{MClassFile, Model}
@@ -8,9 +9,17 @@ import org.simplifide.utils.Utils
 
 trait DartFile extends Container[Model] with DartParser {
   val filename:String
+  implicit val path:Option[String] = None
+  //val classPath:String = ""
+
+  val imports:List[Model.Import] = List()
+
 
   implicit val creator = DartGenerator.create _
-  def createFile = GFile(filename,this.contents)
+  def createFile = {
+    val content = this.contents(imports)
+    GFile(filename,content)
+  }
 }
 
 object DartFile {

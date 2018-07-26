@@ -20,7 +20,7 @@ trait DataModel {
   def createFile = {
     val gen = create
     val className = cla.name.toLowerCase()
-    new GFile(className + ".dart",gen.contents(DartGenerator.create))
+    new GFile(className + ".dart",gen.contents()(DartGenerator.create))
   }
 
 }

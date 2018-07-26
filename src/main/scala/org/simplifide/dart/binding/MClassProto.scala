@@ -1,11 +1,12 @@
 package org.simplifide.dart.binding
 
 import org.simplifide.dart.binding.MClassProto.{From, To}
+import org.simplifide.template.model.MClass.MClassBase
 import org.simplifide.template.model.MFunction.Factory
 import org.simplifide.template.model.MType._
 import org.simplifide.template.model.MVar.VarDec
-import org.simplifide.template.model.Model.{DotPrefix, MClass}
-import org.simplifide.template.model.{MFunction, MType, MVar, Model}
+import org.simplifide.template.model.Model.DotPrefix
+import org.simplifide.template.model._
 import org.simplifide.template.model.Model._
 
 trait MClassProto extends Model {
@@ -66,7 +67,7 @@ object MClassProto {
                              vars:List[MVar.Var],
                              fields:List[Model]) extends MClassProto
 
-  class Cla(cla:MClassProto) extends MClass(cla.name) {
+  class Cla(cla:MClassProto) extends MClassBase(cla.name) {
     cla.declarations.foreach(x => -->(x))
     -->(Model.Line)
     -->(new SemiEnd(cla.constructor))

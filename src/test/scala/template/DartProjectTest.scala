@@ -49,6 +49,7 @@ object TestComponent1 extends DartComponent {
   val template:HtmlModel = h1(p("Here I am 1"))
   val directives:List[Model] = List(DartConstants.ROUTER_DIRECTIVE)
   val providers:List[Model] = List()
+  //override val services = List(DartProjectTestModel.ProjectModel.modelEventService)
 }
 
 object TestComponent2 extends DartComponent {

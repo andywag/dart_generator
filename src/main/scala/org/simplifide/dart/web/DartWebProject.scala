@@ -1,6 +1,7 @@
 package org.simplifide.dart.web
 
 import org.simplifide.dart.binding.{DataModel, MockModel, ModelService}
+import org.simplifide.dart.web.RoutePaths.RoutePathsFile
 import org.simplifide.dart.web.Routes.RoutePath
 import org.simplifide.template.FileModel
 import org.simplifide.template.FileModel.{GCopy, GDir, GList, GResource}
@@ -29,8 +30,8 @@ trait DartWebProject  {
 
 
   protected lazy val main = DartMain(name)
-  private lazy val routeFile     = Routes.RouteFile(routes)
-  private lazy val routePathsFile = Routes.RoutePathsFile(routes)
+  private lazy val routePathsFile = RoutePathsFile(routes)
+  private lazy val routeFile     = Routes.RouteFile(routes, routePathsFile)
 
 
   def create = {
@@ -41,9 +42,10 @@ trait DartWebProject  {
           GDir("models",models.map(x=>x._2).map(x => x.createFile).toList) ::
           GDir("services", services.map(x => x.file)) ::
           GDir("test", mockItems.map(x => x.createFile)) ::
+            GDir("components",componentSources) ::
           routeFile.createFile ::
           routePathsFile.createFile ::
-          componentSources :::
+          //componentSources :::
           sources ),
         GList(DartApp(routes, services).createFiles)
       ),
@@ -66,7 +68,8 @@ object DartWebProject {
 
   val MODEL_PATH   = "src/models/"
   val SERVICE_PATH = "src/services/"
-  val TEST_PATH = "src/test/"
+  val TEST_PATH     = "src/test/"
+  val COMPONENT_PATH     = "src/components/"
 
 
   val defaultDependencies = List(

@@ -23,12 +23,18 @@ object DartProjectTestModel {
 
     val modelEvent = models.get(DartProjectTestModel.ProjectModel.event.id).get.cla
     val modelEventService = ModelService.all(modelEvent,"event")
-    val modelEventMock    = MockModel(modelEventService)
 
 
-    val ex_people = List.tabulate(6)(x => Person(s"person$x",None))
-    val ex_result = List.tabulate(6)(x => Result(s"result$x",ex_people(x)))
-    val ex_event  = List.tabulate(5)(x => Event(s"a$x",s"b$x",ex_result))
+    val ex_people = List.tabulate(2)(x => Person(s"person$x",None))
+    val ex_result = List.tabulate(2)(x => Result(s"result$x",ex_people(x)))
+    val ex_event  = List.tabulate(2)(x => Event(s"a$x",s"b$x",ex_result))
+
+    import io.circe.syntax._
+    val exJson = ex_event.asJson
+    val str = exJson.toString()
+    val modelEventMock    = MockModel(modelEventService, str)
+
+
 
   }
 
