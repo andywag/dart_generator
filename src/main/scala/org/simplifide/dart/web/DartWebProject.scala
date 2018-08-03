@@ -25,13 +25,14 @@ trait DartWebProject  {
 
 
 
-  private lazy val componentSources = components.flatMap(x => x.createFiles)
 
 
-
-  protected lazy val main = DartMain(name)
+  lazy val app = DartApp(routes, services)
+  protected lazy val main = DartMain(name, app)
   private lazy val routePathsFile = RoutePathsFile(routes)
   private lazy val routeFile     = Routes.RouteFile(routes, routePathsFile)
+
+  private lazy val componentSources = app.createFiles ::: components.flatMap(x => x.createFiles)
 
 
   def create = {
@@ -45,16 +46,12 @@ trait DartWebProject  {
             GDir("components",componentSources) ::
           routeFile.createFile ::
           routePathsFile.createFile ::
-          //componentSources :::
-          sources ),
-        GList(DartApp(routes, services).createFiles)
+          sources )
+        //GList(app.createFiles)
       ),
       GDir("test"),
       GDir("web",List(
         main.createFile,
-        //GCopy("favicon.png","C:\\dart_projects\\toh2\\web\\favicon.png"),
-        //GCopy("index.html","C:\\dart_projects\\toh2\\web\\index.html"),
-        //GCopy("styles.css","C:\\dart_projects\\toh2\\web\\styles.css"),
         GResource("favicon.png","web/favicon.png"),
         GResource("index.html" ,"web/index.html"),
         GResource("styles.css" ,"web/styles.css")

@@ -37,7 +37,7 @@ object DartProjectExample extends DartWebProject {
   val services = List(DartProjectTestModel.ProjectModel.modelEventService)
   val mockItems = List(DartProjectTestModel.ProjectModel.modelEventMock)
 
-  override protected lazy val main = DartMain(name, Some(DartProjectTestModel.ProjectModel.modelEventMock))
+  override protected lazy val main = DartMain(name, this.app, Some(DartProjectTestModel.ProjectModel.modelEventMock))
 
 
 }

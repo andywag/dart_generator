@@ -11,6 +11,7 @@ import org.simplifide.template.model.{MFunction, MType, Model}
 import org.simplifide.template.model.Model.$import
 import org.simplifide.template.model.dart.DartParser
 import org.simplifide.template.model.Model._
+import org.simplifide.template.model.dart.DartClass.DartClassBase
 
 object Routes {
 
@@ -50,6 +51,7 @@ object Routes {
       -->($final ~ MType.TList(DartTypes.RouteDefinition) ~ "all" ~= Model.FixListLine(getRouteList()))
 
     }
+
 
     blankLine
     -->(Injectable)

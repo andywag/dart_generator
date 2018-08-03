@@ -10,7 +10,6 @@ import org.simplifide.utils.Utils
 trait DartFile extends Container[Model] with DartParser {
   val filename:String
   implicit val path:Option[String] = None
-  //val classPath:String = ""
 
   val imports:List[Model.Import] = List()
 

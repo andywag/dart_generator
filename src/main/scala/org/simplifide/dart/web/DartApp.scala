@@ -8,7 +8,8 @@ import org.simplifide.template.model.MVar.Var
 import org.simplifide.template.model.{MClass, MType, Model}
 import org.simplifide.template.model.Model.Quotes
 import org.simplifide.template.model.css.CssModel.CssFile
-import org.simplifide.template.model.dart.DartParser
+import org.simplifide.template.model.dart.DartClass.DartClassBase
+import org.simplifide.template.model.dart.{DartClass, DartParser}
 import scalatags.Text.all._
 
 case class DartApp(routes:List[RoutePath], override val services:List[ModelService]) extends DartComponent {
@@ -29,26 +30,19 @@ case class DartApp(routes:List[RoutePath], override val services:List[ModelServi
   val directives:List[Model] = List("routerDirectives")
   val providers:List[Model] = "ClassProvider(Routes)" :: services.map(x => Model.Str(s"ClassProvider(${x.serviceName})"))
 
-  override val imports:List[Model] = Model.Import("src/routes.dart") ::
-    services.map(x => x.classFile.importCommand)
+  // FIXME : Should not have hardcoded imports
+  override val imports:List[Model] = List(Model.Import("../routes.dart"),Model.Import("../services/event_service.dart"))
+    //services.map(x => x.classFile.importCommand)
 
   override def createClass:MClass = DartApp.DartAppClassBase("DartApp",SType("Routes"))
 
 }
 
 object DartApp {
-  case class DartAppClassBase(title:String, routeType:MType) extends MClassBase("AppComponent") with DartParser {
+  case class DartAppClassBase(title:String, routeType:MType) extends DartClassBase("AppComponent")  {//extends MClassBase("AppComponent") with DartParser {
     override val members = List(
       Var("title",$final ~ TString,Some(Quotes(title))),
       routeType.cVar($final)
     )
-
-    -->($final ~ TString ~ "title" ~= Quotes(title))
-    val routes = -->(routeType.cVar($final))
-    //dec($final ~ T("Routes") ~ "routes")
-    call("AppComponent",List("this.routes"), true)
-
-    //-->($final )
-
   }
 }

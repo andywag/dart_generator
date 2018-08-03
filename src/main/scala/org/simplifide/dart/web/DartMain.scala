@@ -7,7 +7,7 @@ import org.simplifide.template.model.MType.{$final, SType}
 import org.simplifide.template.model.Model._
 import org.simplifide.template.model.dart.DartParser
 
-case class DartMain(name:String, client:Option[MClassFile] = None) extends DartFile {
+case class DartMain(name:String, app:DartApp, client:Option[MClassFile] = None) extends DartFile {
 
   import org.simplifide.dart.core.DartPackages._
   import org.simplifide.dart.core.Importable._
@@ -15,10 +15,15 @@ case class DartMain(name:String, client:Option[MClassFile] = None) extends DartF
   val filename = "main.dart"
   override implicit val path = None
 
-  override val imports = List(i(ANGULAR),i(ANGULAR_ROUTER),i(HTTP))
+  override val imports = List(i(ANGULAR),
+    i(ANGULAR_ROUTER),
+    i(HTTP),
+    ip(name,app.file) as ("ng")
+  )
 
 
-  import_pack(name,"app_component.template.dart",Some("ng"))
+
+  //import_pack(name,"app_component.template.dart",Some("ng"))
   client.map(x => -->(x.importPackage(name)))
 
   IMPORT_SELF

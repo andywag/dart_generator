@@ -16,11 +16,15 @@ case class MockModel(service:ModelService, ret:String) extends DartClassFile {
   lazy val mClass = MockClassBase(this.service, ret)
   override val classPath = DartWebProject.TEST_PATH
 
-  IMPORT_DART_ASYNC
-  IMPORT_DART_CONVERT
-  IMPORT_DART_MATH
-  IMPORT_HTTP
-  IMPORT_PACKAGE_TESTING
+  import org.simplifide.dart.core.DartPackages._
+  import org.simplifide.dart.core.Importable._
+  override val imports = List(
+    i(ASYNC),
+    i(CONVERT),
+    i(MATH),
+    i(HTTP),
+    i(HTTP_TESTING)
+  )
 
   importClass(this.service.classFile, Some(this))
 
